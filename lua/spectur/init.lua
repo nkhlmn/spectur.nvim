@@ -33,7 +33,7 @@ local function open_results(opts)
   local current_buffer = api.nvim_win_get_buf(0)
   api.nvim_buf_set_lines(current_buffer, 0, 0, false, { url })
   api.nvim_buf_set_lines(current_buffer, 2, insert_row_end, false, output_table)
-  require('notify')('URL parsed')
+  vim.notify('URL parsed')
 end
 
 function M.parse_url(url)
