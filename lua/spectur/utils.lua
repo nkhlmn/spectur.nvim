@@ -14,4 +14,14 @@ function M.split_str(str, sep)
   return t
 end
 
+---replace escaped characters
+---@param url string
+---@return string
+function M.clean_url(url)
+  url = string.gsub(url, '%%5[Bb]', '[')
+  url = string.gsub(url, '%%5[Dd]', ']')
+  url = string.gsub(url, '%%2[Ff]', '/')
+  return url
+end
+
 return M
