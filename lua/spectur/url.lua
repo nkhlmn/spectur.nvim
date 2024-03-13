@@ -11,11 +11,10 @@ local utils = require('spectur.utils')
 ---@field params UrlParams|nil
 
 ---@class (exact) Url
----@field components UrlComponents
----@field new fun(self, url: string): Url
-local Url = {}
+---@field new fun(url: string): UrlComponents
+local M = {}
 
----parse a string of params e.g. foo=bar&abc=123 -> { foo = "bar", abc = "123" }
+---parse a string of query params into a table e.g. foo=bar&abc=123 -> { foo = "bar", abc = "123" }
 ---@param param_str string
 ---@return UrlParams
 local function parse_params(param_str)
@@ -31,8 +30,8 @@ local function parse_params(param_str)
 end
 
 ---@param url string
----@return Url
-function Url:new(url)
+---@return UrlComponents
+function M.new(url)
   url = utils.clean_url(url)
   local components = {
     url = url
@@ -63,9 +62,7 @@ function Url:new(url)
     components.domain_path = a .. '/' .. c
   end
 
-  self.components = components
-
-  return self
+  return components
 end
 
-return Url
+return M
