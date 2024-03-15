@@ -33,6 +33,7 @@ function M.display(url, opts)
 	end
 end
 
+---@param opts Opts
 function M.setup(opts)
 	M.opts = vim.tbl_deep_extend('force', M.opts, opts or {})
 end

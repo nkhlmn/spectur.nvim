@@ -19,11 +19,7 @@ local M = {}
 ---@return UrlParams
 local function parse_params(param_str)
   local params = {}
-  local param_pairs = utils.split_str(param_str, '&')
-  for _, el in ipairs(param_pairs) do
-    local k_v = utils.split_str(el, '=')
-    local k = k_v[1]
-    local v = k_v[2]
+  for k, v in param_str:gmatch('([^&=?]-)=([^&=?]+)') do
     params[k] = v
   end
   return params
@@ -32,7 +28,7 @@ end
 ---@param url string
 ---@return UrlComponents
 function M.new(url)
-  url = utils.clean_url(url)
+  url = utils.decode(url)
   local components = {
     url = url
   }

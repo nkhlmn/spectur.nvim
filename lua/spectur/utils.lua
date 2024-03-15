@@ -17,10 +17,12 @@ end
 ---replace escaped characters
 ---@param url string
 ---@return string
-function M.clean_url(url)
-  url = string.gsub(url, '%%5[Bb]', '[')
-  url = string.gsub(url, '%%5[Dd]', ']')
-  url = string.gsub(url, '%%2[Ff]', '/')
+function M.decode(url)
+  local hex_to_char = function(h)
+    return string.char(tonumber(h, 16))
+  end
+  url = url:gsub('+', ' ')
+  url = url:gsub('%%(%x%x)', hex_to_char)
   return url
 end
 
