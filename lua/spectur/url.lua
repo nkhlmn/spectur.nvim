@@ -28,10 +28,11 @@ end
 ---@param url string
 ---@return UrlComponents
 function M.new(url)
-  url = utils.decode(url)
   local components = {
     url = url
   }
+
+  url = utils.decode(url)
 
   -- extract fragment
   for a, b in url:gmatch('(.+)#(.+)$') do
