@@ -107,7 +107,7 @@ M.handlers = {
 			title = 'Spectur:',
 			title_pos = 'left',
 		}
-		vim.lsp.util.open_floating_preview(lines, 'json', float_opts)
+		vim.lsp.util.open_floating_preview(lines, opts.view_format, float_opts)
 	end,
 
 	['notify'] = function(url, opts)
